@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="search">
+    <mat-form-field>
+      <input
+        #searchInput
+        matInput
+        placeholder="Search Player"
+        (input)="onSearch(searchInput.value)"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button
+      class="create-button"
+      (click)="openPlayerForm()"
+      mat-raised-button
+      color="primary"
+    >
+      Add New Player
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="playerList" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell *matHeaderCellDef>Rank</th>
+      <td mat-cell *matCellDef="let element">{{ element.rank }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="played">
+      <th mat-header-cell *matHeaderCellDef>Games Played</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getGameName(element.favouriteGame) }}
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef>Score</th>
+      <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef>Time</th>
+      <td mat-cell *matCellDef="let element">{{ element.time }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.available ? "Available" : "Unavailable" }}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          class="update-button"
+          color="primary"
+          (click)="openPlayerForm(element)"
+          mat-stroked-button
+        >
+          Update
+        </button>
+        <button (click)="deletePlayer(element)" color="warn" mat-stroked-button>
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<div *ngIf="isLoading" class="loader">
+  <mat-progress-spinner color="accent" diameter="50" mode="indeterminate">
+  </mat-progress-spinner>
+</div>

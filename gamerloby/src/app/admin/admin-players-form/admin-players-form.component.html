@@ -1,0 +1,133 @@
+<form #form="ngForm">
+  <div class="container">
+    <div class="image-not-found"><mat-icon matSuffix>image</mat-icon></div>
+    <div>
+      <div class="information-line">
+        <span>Player</span>
+        <span>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              required
+              [(ngModel)]="player.name"
+              #name="ngModel"
+              name="name"
+            />
+            <mat-error
+              *ngIf="
+                (!name.valid && !name.pristine) ||
+                (!name.valid && showErrorMessage)
+              "
+              >Please enter a name</mat-error
+            >
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="information-line">
+        <span>Rank</span>
+        <span>
+          <mat-form-field>
+            <mat-label>Select a Rank</mat-label>
+            <mat-select
+              [(ngModel)]="player.rank"
+              #rank="ngModel"
+              required
+              name="rank"
+            >
+              <mat-option> </mat-option>
+              <mat-option *ngFor="let rank of rankList" [value]="rank">{{
+                rank
+              }}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                (!rank.valid && !rank.pristine) ||
+                (!rank.valid && showErrorMessage)
+              "
+              >Please choose a game</mat-error
+            >
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="information-line">
+        <span>Score</span>
+        <span>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="player.score"
+              name="score"
+            />
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="information-line">
+        <span>Time</span>
+        <span>
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="player.time" name="time" />
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="information-line">
+        <span>Favourite Game</span>
+        <span>
+          <mat-form-field>
+            <mat-label>Select a Game</mat-label>
+            <mat-select
+              [(ngModel)]="player.favouriteGame"
+              (selectionChange)="showErrorMessage = false"
+              name="favouriteGame"
+            >
+              <mat-option></mat-option>
+              <mat-option *ngFor="let game of gameList" [value]="game._id">{{
+                game.title
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="information-line margin-bottom">
+        <span class="game-select">Status</span>
+        <span>
+          <mat-form-field>
+            <mat-label>Select a Status</mat-label>
+            <mat-select
+              [(ngModel)]="player.available"
+              (selectionChange)="showErrorMessage = false"
+              required
+              #status="ngModel"
+              name="status"
+            >
+              <mat-option>Select a Status</mat-option>
+              <mat-option [value]="true">Available</mat-option>
+              <mat-option [value]="false">Unavailable</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                (!status.valid && !status.pristine) ||
+                (!status.valid && showErrorMessage)
+              "
+              >Please choose a status</mat-error
+            >
+          </mat-form-field>
+        </span>
+      </div>
+      <div class="buttons">
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          (click)="savePlayer(form.valid)"
+        >
+          {{ isUpdate ? "Update" : "Add" }}
+        </button>
+        <button mat-flat-button color="warn" (click)="closeDialog()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

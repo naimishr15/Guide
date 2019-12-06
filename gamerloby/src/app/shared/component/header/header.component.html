@@ -1,0 +1,41 @@
+<header>
+  <h2 class="logo">
+    <mat-icon matSuffix>videogame_asset</mat-icon> Gamer Lobby
+  </h2>
+  <div class="options">
+    <h3
+      (click)="goToRoute(routes.PLAYERS_RANKING)"
+      [ngClass]="{ selected: selectedPath == routes.PLAYERS_RANKING }"
+    >
+      Player-Rankings
+    </h3>
+    <h3
+      *ngIf="isAdmin"
+      (click)="goToRoute(routes.PLAYERS)"
+      [ngClass]="{ selected: selectedPath == routes.PLAYERS }"
+    >
+      Players
+    </h3>
+    <h3
+      *ngIf="isAdmin"
+      (click)="goToRoute(routes.GAMES)"
+      [ngClass]="{ selected: selectedPath == routes.GAMES }"
+    >
+      Games
+    </h3>
+    <h3
+      *ngIf="!isAdmin"
+      (click)="goToRoute(routes.LOGIN)"
+      [ngClass]="{ selected: selectedPath == routes.LOGIN }"
+    >
+      Login
+    </h3>
+    <h3
+      *ngIf="isAdmin"
+      (click)="logout()"
+      [ngClass]="{ selected: selectedPath == routes.LOGIN }"
+    >
+      Logout
+    </h3>
+  </div>
+</header>

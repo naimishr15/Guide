@@ -1,0 +1,21 @@
+.container {
+  padding: 32px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: 0 auto;
+}
+
+.login-error {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

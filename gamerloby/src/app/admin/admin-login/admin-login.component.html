@@ -1,0 +1,40 @@
+<div class="container">
+  <form class="login-form">
+    <mat-form-field>
+      <input
+        [(ngModel)]="username"
+        name="username"
+        matInput
+        placeholder="Username"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input
+        [(ngModel)]="password"
+        matInput
+        name="password"
+        type="password"
+        placeholder="Password"
+      />
+    </mat-form-field>
+
+    <button
+      [disabled]="inProgress"
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="login()"
+    >
+      Login
+    </button>
+    <mat-error *ngIf="showError" class="login-error"
+      >Username/Password is wrong</mat-error
+    >
+  </form>
+</div>
+
+<div *ngIf="inProgress" class="loader">
+  <mat-progress-spinner color="accent" diameter="50" mode="indeterminate">
+  </mat-progress-spinner>
+</div>

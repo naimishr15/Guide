@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="image-not-found"><mat-icon matSuffix>image</mat-icon></div>
+  <div>
+    <div class="information-line">
+      <span>Player</span>
+      <span>{{ player?.name }}</span>
+    </div>
+    <div class="information-line">
+      <span>Rank</span>
+      <span>{{ player?.rank }}</span>
+    </div>
+    <div class="information-line">
+      <span>Score</span>
+      <span>{{ player?.score }}</span>
+    </div>
+    <div class="information-line">
+      <span>Time</span>
+      <span>{{ player?.time }}</span>
+    </div>
+    <div class="information-line">
+      <span>Favourite Game</span>
+      <span>{{ getGameName(player?.favouriteGame) }}</span>
+    </div>
+    <div class="information-line">
+      <span class="game-select">Customer</span>
+      <span>
+        <mat-form-field>
+          <mat-select
+            [(ngModel)]="selectedGameId"
+            (selectionChange)="showErrorMessage = false"
+          >
+            <mat-option value="-1">Select a Game</mat-option>
+            <mat-option *ngFor="let game of gameList" [value]="game._id">{{
+              game.title
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="showErrorMessage">Please choose a game</mat-error>
+      </span>
+    </div>
+    <div class="buttons">
+      <button mat-flat-button color="primary" (click)="joinGame()">Join</button>
+      <button mat-flat-button color="warn" (click)="closeDialog()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

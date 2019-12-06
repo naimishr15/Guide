@@ -1,0 +1,37 @@
+.container {
+  padding: 32px;
+}
+
+.search {
+  width: 80%;
+  text-align: right;
+  margin: 0 auto;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-button {
+  margin-right: 8px;
+}
+
+.create-button {
+  margin-left: 64px;
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+
+th,
+td {
+  overflow: hidden;
+  width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
